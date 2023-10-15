@@ -1,28 +1,31 @@
 <?php
 
-class LoginController{
+class LoginController extends Controller{
 
-    function defaultAction(){
-        include "views/login.html";
+
+    function runBeforeAction(){
+
+        if($_SESSION['is_submitted'] ?? 0 ==1){
+            include 'views/userexist.html';
+            return false;
+            
+        }
+        return true;
     }
 
-    public function showIndexAction(){
+    function defaultAction(){
+       
         include "views/login.html";
     }
 
     public function submitAction(){
+      
         $user=$_POST['email'];
+        $_SESSION['is_submitted']=1;
         include "views/thank.html";
+
     }
 
-    public function runAction($actionName){
-        $actionName .= 'Action';
-        if(method_exists($this, $actionName)){
-            $this->$actionName();
-        }else {
-            include "views/404.html";
-        }
-    }
 }
 
 ?>
