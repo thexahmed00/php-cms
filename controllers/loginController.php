@@ -6,7 +6,10 @@ class LoginController extends Controller{
     function runBeforeAction(){
 
         if($_SESSION['is_submitted'] ?? 0 ==1){
-            include 'views/userexist.html';
+            $var['header']="";
+            $var['content']="You are already logged in";
+           $template=new Template();
+           $template->render('static',$var);
             return false;
             
         }
@@ -22,7 +25,10 @@ class LoginController extends Controller{
       
         $user=$_POST['email'];
         $_SESSION['is_submitted']=1;
-        include "views/thank.html";
+        $var['header']="Welcome";
+       $var['content']=$_POST['email'];
+      $template=new Template();
+      $template->render('static',$var);
 
     }
 
