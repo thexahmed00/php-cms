@@ -13,7 +13,7 @@ class Controller{
         if(method_exists($this, $actionName)){
             $this->$actionName();
         }else {
-            include "views/404.html";
+            include VIEW."404.html";
         }
     }
 }

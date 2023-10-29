@@ -6,7 +6,7 @@
     
        $var['header']="Hello World!";
        $var['content']="This is the content of the home page";
-      $template=new Template();
+      $template=new Template('theme');
       $template->render('static',$var);
     }
 }

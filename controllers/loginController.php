@@ -8,7 +8,7 @@ class LoginController extends Controller{
         if($_SESSION['is_submitted'] ?? 0 ==1){
             $var['header']="";
             $var['content']="You are already logged in";
-           $template=new Template();
+           $template=new Template('theme');
            $template->render('static',$var);
             return false;
             
@@ -18,7 +18,10 @@ class LoginController extends Controller{
 
     function defaultAction(){
        
-        include "views/login.html";
+        $var['header']="Login";
+        $var['content']="Don't have an account? <a href='/register'>Register</a>";
+       $template=new Template('theme');
+       $template->render('login',$var);
     }
 
     public function submitAction(){
@@ -27,7 +30,7 @@ class LoginController extends Controller{
         $_SESSION['is_submitted']=1;
         $var['header']="Welcome";
        $var['content']=$_POST['email'];
-      $template=new Template();
+      $template=new Template('theme');
       $template->render('static',$var);
 
     }
